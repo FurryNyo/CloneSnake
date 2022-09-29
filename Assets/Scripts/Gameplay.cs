@@ -8,6 +8,7 @@ public class Gameplay : MonoBehaviour
     [Header("Links")]
     [SerializeField] private GameController _gameController;
     [SerializeField] private SnakeTail _snakeTail;
+    [SerializeField] private TextMeshProUGUI _lvl;
 
     [Header("Health Snake")]
     [SerializeField] private int _startSnakeHP;
@@ -34,6 +35,7 @@ public class Gameplay : MonoBehaviour
     void Update()
     {
         _HPText.text = CurentHP.ToString();
+        _lvl.text = "Уровень: " + LevelIndex.ToString();
     }
 
     public void OnCollisionEnter(Collision collision)

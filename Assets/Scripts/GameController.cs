@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     [Header("Links")]
     [SerializeField] private SnakeMovement _snakeMovement;
     [SerializeField] private LevelGenerator _levelGenerator;
+    public GameObject WinPanel;
+    public GameObject DeathPanel;
 
     public enum State
     {
@@ -27,7 +29,7 @@ public class GameController : MonoBehaviour
         }
         CurrentState = State.Lose;
         _snakeMovement.enabled = false;
-        ReloadLevel();
+        DeathPanel.SetActive(true);
     }
 
     public void OnPlayerWin()
@@ -39,11 +41,16 @@ public class GameController : MonoBehaviour
         CurrentState = State.Win;
         _snakeMovement.enabled = false;
         _levelGenerator.PreSeed();
-        ReloadLevel();
+        WinPanel.SetActive(true);
     }
 
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    private void Start()
+    {
+        WinPanel.SetActive(false);
+        DeathPanel.SetActive(false);
     }
 }
